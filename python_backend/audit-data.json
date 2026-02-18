@@ -1,0 +1,452 @@
+{
+    "_instructions": "SIRF YE VALUES CHANGE KARO - BAAKI SAB AUTOMATIC HAI!",
+    "meta": {
+        "audit_date": "15 February, 2026",
+        "website_url": "https://www.chocolaty.in",
+        "client_name": "www.chocolaty.in"
+    },
+    "scores": {
+        "performance": 59,
+        "accessibility": 81,
+        "best_practices": 96,
+        "seo": 77,
+        "overall": 78,
+        "mobile": 59
+    },
+    "core_web_vitals": {
+        "lcp": {
+            "value": 15.1,
+            "unit": "seconds",
+            "status": "poor",
+            "target": 2.5
+        },
+        "fcp": {
+            "value": 2.7,
+            "unit": "seconds",
+            "status": "average",
+            "target": 1.8
+        },
+        "cls": {
+            "value": 0.11,
+            "unit": "score",
+            "status": "average",
+            "target": 0.1
+        },
+        "fid": {
+            "value": 232,
+            "unit": "ms",
+            "status": "average",
+            "target": 100
+        },
+        "ttfb": {
+            "value": 0.2,
+            "unit": "seconds",
+            "status": "good",
+            "target": 0.6
+        }
+    },
+    "seo_analysis": {
+        "meta_tags": {
+            "title": {
+                "exists": true,
+                "content": "Online Cake Store | Buy Online Cakes and Flowers in India  - Chocolaty",
+                "length": 70,
+                "optimal": false,
+                "issues": [
+                    "Title too long (70 chars) - should be under 60 characters"
+                ]
+            },
+            "description": {
+                "exists": true,
+                "content": "Chocolaty offers best online cakes and flowers delivery services across 500 cities in india. Order now to get fresh baked cakes with same day delivery and midnight delivery option in India",
+                "length": 188,
+                "optimal": false,
+                "issues": [
+                    "Description too long (188 chars) - should be under 160 characters"
+                ]
+            },
+            "keywords": {
+                "exists": true,
+                "content": "Online Cake Store, online cake store near me,  Cake shop near me,  cake shop near me home delivery",
+                "issues": []
+            }
+        },
+        "heading_structure": {
+            "h1": {
+                "count": 10,
+                "contents": [
+                    "Cakes and Flowers- Delivering Happiness to your Doorstep",
+                    "One stop to buy Online Flowers for all Occasions",
+                    "No Compromise on Quality",
+                    "Mouth-watering Cake Delivery for any Event",
+                    "Need Eggless Cake? No Worries!!",
+                    "Combo Offers: The Wholesome of Happiness",
+                    "One stop to buy Online Flowers for all Occasions",
+                    "Make a personally customized cake for any occasion",
+                    "Every Bouquet Carries a Story",
+                    "Same Day Cake and Flower Delivery Services"
+                ],
+                "issues": [
+                    "Multiple H1 tags found (10) - should have only one"
+                ]
+            },
+            "h2": {
+                "count": 10,
+                "contents": [],
+                "issues": []
+            },
+            "h3": {
+                "count": 39,
+                "contents": [],
+                "issues": []
+            },
+            "hierarchy_valid": true,
+            "issues": []
+        },
+        "images": {
+            "total": 64,
+            "with_alt": 48,
+            "without_alt": 16,
+            "missing_alt_images": [
+                "https://www.facebook.com/tr?id=764806087490791&ev=PageView\n&noscript=1",
+                "images/search.png",
+                "images/choco_logo.png",
+                "images/shopping-cart.png",
+                "images/user.png",
+                "images/profile.png",
+                "images/circle-flowers.jpg",
+                "images/circle-cake.jpg",
+                "images/circle-combo.jpg",
+                "images/circle-chocolates.jpg"
+            ],
+            "issues": [
+                "16 images missing alt text"
+            ]
+        },
+        "canonical": {
+            "exists": true,
+            "url": "https://chocolaty.in",
+            "issues": []
+        },
+        "robots_txt": {
+            "exists": true,
+            "accessible": true,
+            "content": "User-Agent: *\nDisallow: /admin/\nSitemap: https://www.chocolaty.in/sitemap.xml",
+            "issues": []
+        },
+        "sitemap": {
+            "exists": true,
+            "url": "https://www.chocolaty.in/sitemap.xml",
+            "entries": 4656,
+            "issues": []
+        },
+        "structured_data": {
+            "exists": true,
+            "types": [
+                "Organization",
+                "Organization",
+                "LocalBusiness",
+                "WebSite"
+            ],
+            "issues": []
+        },
+        "open_graph": {
+            "exists": false,
+            "tags_found": [],
+            "issues": [
+                "No Open Graph meta tags found"
+            ]
+        },
+        "twitter_cards": {
+            "exists": false,
+            "issues": [
+                "Twitter card meta tags not found"
+            ]
+        },
+        "seo_score": 77
+    },
+    "technical_seo": {
+        "https": {
+            "enabled": true,
+            "certificate_valid": true,
+            "issues": []
+        },
+        "mobile_friendly": {
+            "viewport_set": true,
+            "responsive": true,
+            "text_readable": true,
+            "tap_targets_sized": true,
+            "issues": [
+                "Some touch targets could be larger",
+                "Minor layout issues on certain screen sizes"
+            ]
+        },
+        "url_structure": {
+            "score": 100,
+            "issues": []
+        },
+        "internal_links": {
+            "total": 147,
+            "broken": 14,
+            "nofollow": 0,
+            "issues": [
+                "14 broken internal links found"
+            ]
+        },
+        "external_links": {
+            "total": 3,
+            "broken": 1,
+            "issues": [
+                "1 broken external link(s)"
+            ]
+        },
+        "page_speed": {
+            "desktop_score": 74,
+            "mobile_score": 59,
+            "issues": []
+        },
+        "indexability": {
+            "indexable": true,
+            "noindex": false,
+            "canonical_issues": [],
+            "issues": []
+        }
+    },
+    "performance_audit": {
+        "load_time": 15.1,
+        "page_size": {
+            "total_kb": 2500,
+            "images_kb": 1800,
+            "scripts_kb": 450,
+            "styles_kb": 150,
+            "fonts_kb": 100
+        },
+        "requests": {
+            "total": 85,
+            "by_type": {
+                "images": 45,
+                "scripts": 20,
+                "styles": 8,
+                "fonts": 4,
+                "other": 8
+            }
+        },
+        "optimization": {
+            "images_optimized": false,
+            "minification": {
+                "js": false,
+                "css": false,
+                "html": false
+            },
+            "caching": {
+                "browser_cache": false,
+                "server_cache": false
+            },
+            "compression": {
+                "gzip": true,
+                "brotli": false
+            },
+            "cdn": false,
+            "lazy_loading": false
+        },
+        "issues": [
+            "Images not optimized - potential 60% size reduction",
+            "JavaScript not minified",
+            "CSS not minified",
+            "No browser caching configured",
+            "No lazy loading for images"
+        ]
+    },
+    "ux_ui_analysis": {
+        "navigation": {
+            "score": 65,
+            "issues": [
+                "Navigation menu not consistent across pages",
+                "No breadcrumb navigation"
+            ]
+        },
+        "cta": {
+            "visible": true,
+            "placement": "below-fold",
+            "issues": [
+                "CTA buttons not prominently placed above the fold"
+            ]
+        },
+        "readability": {
+            "score": 70,
+            "font_size": "14px",
+            "line_height": 1.5,
+            "contrast_ratio": 4.5,
+            "issues": [
+                "Font size could be larger for better readability"
+            ]
+        },
+        "accessibility": {
+            "score": 81,
+            "aria_labels": false,
+            "keyboard_navigation": true,
+            "screen_reader_friendly": false,
+            "color_contrast": {
+                "issues_found": 5
+            },
+            "issues": [
+                "Missing ARIA labels on interactive elements",
+                "5 color contrast issues",
+                "Not fully screen reader compatible"
+            ]
+        },
+        "design": {
+            "modern": false,
+            "consistent": true,
+            "responsive": true,
+            "issues": [
+                "Design feels outdated compared to industry standards"
+            ]
+        }
+    },
+    "content_audit": {
+        "word_count": 2130,
+        "readability_score": 18,
+        "readability_level": "Professional/Technical",
+        "duplicate_content": {
+            "found": false,
+            "percentage": 0.0,
+            "issues": []
+        },
+        "keyword_analysis": {
+            "primary_keyword": {
+                "keyword": "chocolaty",
+                "density": 1.08,
+                "optimal": true
+            },
+            "secondary_keywords": [
+                {
+                    "keyword": "flowers",
+                    "density": 3.76
+                },
+                {
+                    "keyword": "cake",
+                    "density": 2.54
+                },
+                {
+                    "keyword": "your",
+                    "density": 1.36
+                }
+            ],
+            "issues": []
+        },
+        "content_freshness": {
+            "last_updated": "2025-08-15",
+            "days_since_update": 180,
+            "issues": [
+                "Content not updated in 3 months"
+            ]
+        },
+        "content_quality": {
+            "score": 80,
+            "has_blog": false,
+            "blog_posts": 0,
+            "issues": [
+                "Consider adding a blog for fresh content"
+            ]
+        }
+    },
+    "backlink_profile": {
+        "domain_authority": 25,
+        "page_authority": 30,
+        "total_backlinks": 450,
+        "referring_domains": 85,
+        "toxic_links": {
+            "count": 12,
+            "percentage": 2.7,
+            "issues": [
+                "12 potentially toxic backlinks detected"
+            ]
+        },
+        "link_types": {
+            "dofollow": 400,
+            "nofollow": 50
+        },
+        "anchor_text": {
+            "branded": 45,
+            "exact_match": 25,
+            "partial_match": 20,
+            "generic": 10
+        },
+        "issues": [
+            "Domain authority below industry average of 35",
+            "Some toxic backlinks need disavowing"
+        ]
+    },
+    "competitor_benchmarking": {
+        "competitors": [
+            {
+                "name": "Industry Leader",
+                "url": "https://www.example.com",
+                "performance": 85,
+                "seo": 82,
+                "mobile": 88,
+                "domain_authority": 45,
+                "load_time": 2.1
+            },
+            {
+                "name": "Industry Average",
+                "performance": 75,
+                "seo": 75,
+                "mobile": 80,
+                "domain_authority": 35,
+                "load_time": 3.0
+            }
+        ],
+        "comparison": {
+            "performance_gap": -26,
+            "seo_gap": -5,
+            "mobile_gap": -29,
+            "overall_gap": -7
+        }
+    },
+    "recommendations": {
+        "critical": [],
+        "high_priority": [
+            {
+                "issue": "Missing Image Alt Tags",
+                "impact": "Medium",
+                "effort": "Low",
+                "description": "Add descriptive alt text to 16 images",
+                "expected_improvement": "Better SEO and accessibility"
+            }
+        ],
+        "medium_priority": [
+            {
+                "issue": "Content Not Updated",
+                "impact": "Low",
+                "effort": "Low",
+                "description": "Update content regularly for freshness signals",
+                "expected_improvement": "Better search rankings"
+            }
+        ],
+        "quick_wins": [
+            {
+                "issue": "Enable Browser Caching",
+                "impact": "Medium",
+                "effort": "Very Low",
+                "description": "Add cache-control headers for static resources",
+                "expected_improvement": "Faster repeat visits"
+            },
+            {
+                "issue": "Minify CSS/JS",
+                "impact": "Medium",
+                "effort": "Very Low",
+                "description": "Enable minification for CSS and JavaScript files",
+                "expected_improvement": "10-15% file size reduction"
+            }
+        ]
+    },
+    "contact": {
+        "agency_name": "TournX Web Studio",
+        "email": "hello@tournxwebstudio.com",
+        "phone": "+91-9876543210",
+        "whatsapp": "+91-9876543210",
+        "website": "tournxwebstudio.com"
+    }
+}

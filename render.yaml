@@ -1,0 +1,31 @@
+# Render.com Blueprint for Website Audit Tool
+# This file enables automatic deployment on Render.com
+
+services:
+  # Python Backend API
+  - type: web
+    name: website-audit-api
+    runtime: python
+    region: oregon # or singapore for Asia
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    rootDir: python_backend
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: PAGESPEED_API_KEY
+        sync: false # Set manually in Render dashboard
+      - key: GEMINI_API_KEY
+        sync: false # Set manually in Render dashboard
+    healthCheckPath: /health
+
+  # Static Frontend (Optional - use Cloudflare Pages instead)
+  # - type: static
+  #   name: website-audit-frontend
+  #   buildCommand: echo "No build needed"
+  #   staticPublishPath: .
+  #   routes:
+  #     - type: rewrite
+  #       source: /api/*
+  #       destination: https://website-audit-api.onrender.com/api/*
