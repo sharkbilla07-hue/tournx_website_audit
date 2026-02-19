@@ -12,6 +12,8 @@ import sys
 from datetime import datetime, timedelta
 from functools import wraps
 import hashlib
+import requests
+import socket
 
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -59,6 +61,41 @@ def set_cached_audit(url, data):
         'timestamp': datetime.now()
     }
     logger.info(f"Cached audit for: {url}")
+
+
+def check_url_accessible(url):
+    """
+    Check if URL is actually accessible (website exists)
+    Returns: (is_accessible: bool, error_message: str or None)
+    """
+    try:
+        # Extract domain for DNS check first
+        from urllib.parse import urlparse
+        parsed = urlparse(url)
+        domain = parsed.netloc
+        
+        # DNS resolution check
+        try:
+            socket.gethostbyname(domain)
+        except socket.gaierror:
+            return False, f"Website '{domain}' does not exist or DNS resolution failed"
+        
+        # HTTP request check with short timeout
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'}
+        response = requests.head(url, headers=headers, timeout=10, allow_redirects=True)
+        
+        if response.status_code >= 400:
+            return False, f"Website returned error status: {response.status_code}"
+        
+        return True, None
+        
+    except requests.exceptions.Timeout:
+        return False, "Website is not responding (timeout)"
+    except requests.exceptions.ConnectionError as e:
+        return False, "Could not connect to website. Please check if the URL is correct."
+    except Exception as e:
+        logger.error(f"URL check error: {e}")
+        return False, f"Could not access website: {str(e)}"
 
 
 @app.route('/')
@@ -116,6 +153,16 @@ def run_audit():
                 'error': 'Invalid URL format'
             }), 400
         
+        # Check if website is actually accessible
+        is_accessible, error_msg = check_url_accessible(url)
+        if not is_accessible:
+            logger.warning(f"URL not accessible: {url} - {error_msg}")
+            return jsonify({
+                'success': False,
+                'error': error_msg,
+                'error_type': 'url_not_accessible'
+            }), 400
+        
         logger.info(f"Starting audit for: {url}")
         
         # Run audit
@@ -160,6 +207,16 @@ def run_audit_sync():
             return jsonify({
                 'success': False,
                 'error': 'Invalid URL format'
+            }), 400
+        
+        # Check if website is actually accessible
+        is_accessible, error_msg = check_url_accessible(url)
+        if not is_accessible:
+            logger.warning(f"URL not accessible: {url} - {error_msg}")
+            return jsonify({
+                'success': False,
+                'error': error_msg,
+                'error_type': 'url_not_accessible'
             }), 400
         
         # Check cache first
