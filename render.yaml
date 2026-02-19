@@ -9,7 +9,7 @@ services:
     region: oregon # or singapore for Asia
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn app:app
+    startCommand: gunicorn --timeout 120 app:app
     rootDir: python_backend
     envVars:
       - key: PYTHON_VERSION
@@ -19,13 +19,3 @@ services:
       - key: GEMINI_API_KEY
         sync: false # Set manually in Render dashboard
     healthCheckPath: /health
-
-  # Static Frontend (Optional - use Cloudflare Pages instead)
-  # - type: static
-  #   name: website-audit-frontend
-  #   buildCommand: echo "No build needed"
-  #   staticPublishPath: .
-  #   routes:
-  #     - type: rewrite
-  #       source: /api/*
-  #       destination: https://website-audit-api.onrender.com/api/*
