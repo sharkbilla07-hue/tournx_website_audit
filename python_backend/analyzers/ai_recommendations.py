@@ -55,6 +55,11 @@ def _get_gemini_recommendations(audit_data: Dict[str, Any]) -> Optional[Dict[str
     """
     import requests
     
+    # Skip AI if no API key
+    if not GEMINI_API_KEY:
+        logger.info("No Gemini API key found, using rule-based recommendations")
+        return None
+    
     # Prepare the prompt
     prompt = _create_audit_prompt(audit_data)
     
@@ -67,7 +72,7 @@ def _get_gemini_recommendations(audit_data: Dict[str, Any]) -> Optional[Dict[str
                     'parts': [{'text': prompt}]
                 }]
             },
-            timeout=30
+            timeout=60  # Increased timeout for Gemini API
         )
         
         if response.status_code == 200:
