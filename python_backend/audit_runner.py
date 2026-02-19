@@ -1,7 +1,7 @@
 """
 Website Audit Tool - Main Audit Runner
 Combines all analyzers and generates complete audit data
-Enhanced with: Security Analysis, Multi-page Crawling, AI Recommendations
+Enhanced with: Security Analysis, Multi-page Crawling, AI Recommendations, Real UX Analysis
 """
 
 import json
@@ -22,9 +22,11 @@ from analyzers.technical_seo import run_technical_seo_analysis
 from analyzers.content_analyzer import run_content_analysis
 from analyzers.security_analyzer import run_security_analysis
 from analyzers.ai_recommendations import get_ai_recommendations
+from analyzers.ux_analyzer import run_ux_analysis
 
 # Import scrapers
 from scrapers.site_crawler import run_site_crawl
+from scrapers.web_scraper import WebScraper
 
 # Import utilities
 from utils.helpers import (
@@ -162,53 +164,6 @@ def get_performance_audit(pagespeed_data: Dict[str, Any], scraper_data: Dict[str
     }
 
 
-def get_ux_ui_analysis(scores: Dict[str, int], seo_analysis: Dict[str, Any] = None) -> Dict[str, Any]:
-    """
-    Generate UX/UI analysis data
-    """
-    accessibility_score = scores.get('accessibility', 77)
-    
-    return {
-        'navigation': {
-            'score': 65,
-            'issues': [
-                'Navigation menu not consistent across pages',
-                'No breadcrumb navigation'
-            ]
-        },
-        'cta': {
-            'visible': True,
-            'placement': 'below-fold',
-            'issues': ['CTA buttons not prominently placed above the fold']
-        },
-        'readability': {
-            'score': 70,
-            'font_size': '14px',
-            'line_height': 1.5,
-            'contrast_ratio': 4.5,
-            'issues': ['Font size could be larger for better readability']
-        },
-        'accessibility': {
-            'score': accessibility_score,
-            'aria_labels': False,
-            'keyboard_navigation': True,
-            'screen_reader_friendly': False,
-            'color_contrast': {'issues_found': 5},
-            'issues': [
-                'Missing ARIA labels on interactive elements',
-                '5 color contrast issues',
-                'Not fully screen reader compatible'
-            ]
-        },
-        'design': {
-            'modern': False,
-            'consistent': True,
-            'responsive': True,
-            'issues': ['Design feels outdated compared to industry standards']
-        }
-    }
-
-
 def run_complete_audit(url: str, enable_crawl: bool = False, max_pages: int = 10, use_ai: bool = True) -> Dict[str, Any]:
     """
     Run complete website audit
@@ -224,6 +179,10 @@ def run_complete_audit(url: str, enable_crawl: bool = False, max_pages: int = 10
     domain = extract_domain(url)
     
     logger.info(f"Starting complete audit for: {url}")
+    
+    # Initialize scraper for reuse across analyzers
+    scraper = WebScraper(url)
+    scraper.fetch_page()
     
     # Step 1: PageSpeed Analysis
     logger.info("Step 1: Running PageSpeed analysis...")
@@ -263,7 +222,7 @@ def run_complete_audit(url: str, enable_crawl: bool = False, max_pages: int = 10
         logger.error(f"Content analysis failed: {e}")
         content_audit = {}
     
-    # Step 5: Security Analysis (NEW)
+    # Step 5: Security Analysis
     logger.info("Step 5: Running Security analysis...")
     try:
         security_analysis = run_security_analysis(url)
@@ -271,10 +230,21 @@ def run_complete_audit(url: str, enable_crawl: bool = False, max_pages: int = 10
         logger.error(f"Security analysis failed: {e}")
         security_analysis = {}
     
-    # Step 6: Multi-page Crawl (Optional)
+    # Step 6: UX/UI Analysis (NEW - Real Analysis)
+    logger.info("Step 6: Running UX/UI analysis...")
+    try:
+        ux_ui_analysis = run_ux_analysis(url, scraper)
+        # Add UX score to scores
+        if ux_ui_analysis and 'score' in ux_ui_analysis:
+            scores['ux'] = ux_ui_analysis['score']
+    except Exception as e:
+        logger.error(f"UX/UI analysis failed: {e}")
+        ux_ui_analysis = {'score': 0, 'issues': ['Analysis failed']}
+    
+    # Step 7: Multi-page Crawl (Optional)
     crawl_report = None
     if enable_crawl:
-        logger.info(f"Step 6: Running Multi-page crawl (max {max_pages} pages)...")
+        logger.info(f"Step 7: Running Multi-page crawl (max {max_pages} pages)...")
         try:
             crawl_report = run_site_crawl(url, max_pages=max_pages)
         except Exception as e:
@@ -308,11 +278,11 @@ def run_complete_audit(url: str, enable_crawl: bool = False, max_pages: int = 10
         },
         'seo_analysis': seo_analysis,
         'technical_seo': technical_seo,
-        'security_analysis': security_analysis,  # NEW
+        'security_analysis': security_analysis,
         'performance_audit': get_performance_audit(pagespeed_data if 'pagespeed_data' in dir() else {}),
-        'ux_ui_analysis': get_ux_ui_analysis(scores, seo_analysis),
+        'ux_ui_analysis': ux_ui_analysis,  # Now using real analysis
         'content_audit': content_audit,
-        'crawl_report': crawl_report,  # NEW
+        'crawl_report': crawl_report,
         'recommendations': None,  # Will be generated below
         'contact': CONTACT
     }
